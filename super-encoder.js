@@ -2,14 +2,15 @@ const {
   caesarCipher,
   symbolCipher,
   reverseCipher,
-} = require(".encryptors.js");
+} = require("./encryptors.js");
 
 const encodeMessage = (str) => {
-  
+  return reverseCipher(symbolCipher(caesarCipher(str, 17)));
 };
 
-const decodeMessage = (str) => {};
-
+const decodeMessage = (str) => {
+  return caesarCipher(symbolCipher(reverseCipher(str)), -17);
+};
 /* Helper function for displaying the encrypted message to the user. */
 const handleInput = (userInput) => {
   const str = userInput.toString().trim();
